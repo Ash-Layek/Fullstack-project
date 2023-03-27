@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
+
+import axios from 'axios';
+
+import Table from './tableComponents/Table/Table';
+
+import Nav from './Navbar/Nav';
+
 import './App.css';
 
-function App() {
+const App  = (props) =>   {
+
+const [items, setItems] = useState([]);
+
+
+
+useEffect(() => {
+
+
+  let url = "http://127.0.0.1:3001/items";
+
+ 
+  axios.get(url).then(res=> {
+
+
+    
+
+    setItems(res.data)
+
+
+  }).catch(err => {
+
+    console.log(err);
+    
+    console.log("hahowaa");
+
+  })
+
+
+}, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Nav />
+      <Table entries={items} />
+
     </div>
   );
 }
