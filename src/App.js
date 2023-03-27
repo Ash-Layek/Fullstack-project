@@ -6,6 +6,8 @@ import Table from './tableComponents/Table/Table';
 
 import Nav from './Navbar/Nav';
 
+import Home from './Home'
+
 import './App.css';
 
 const App  = (props) =>   {
@@ -42,8 +44,7 @@ useEffect(() => {
   return (
     <div className="App">
       
-      <Nav />
-      <Table entries={items} />
+      <Home entries={items}/>
 
     </div>
   );

@@ -1,4 +1,8 @@
+import {Route, Routes, NavLink, HashRouter} from "react-router-dom";
 
+import Home from "../Home"
+
+import Categories from "../Categories"
 
 
 import "./Nav.css";
@@ -9,19 +13,35 @@ const Nav = () => {
 console.log("nav is here");
     return(
 
-
+<HashRouter>
+<div className="navv">
         <ul>
 
-<li><a href =""> Items List</a> </li>
-<li><a href =""> Category List</a> </li>
-
-
+<li><NavLink to="/"> Items List</NavLink></li>
+<li><NavLink to="/categories" > Category List</NavLink></li>
 
 
         </ul>
 
-  
+        </div>
 
+        <div className="content">
+        <Routes>
+
+        
+        <Route  exact path="/" element={<Home />}/>
+        <Route  path="categories" element={<Categories />}/>
+        
+        </Routes>
+
+         
+
+
+
+        </div>
+
+  
+        </HashRouter>
 
     
 
