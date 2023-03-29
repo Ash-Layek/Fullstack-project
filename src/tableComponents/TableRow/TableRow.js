@@ -3,6 +3,9 @@ import './TableRow.css';
 
 const TableRow = props => {
     return(
+        
+
+       
         <tr key={props.index}>
             <td>{ props.items.ID }</td>
             <td>{ props.items.CATEGORY_ID }</td>
@@ -11,7 +14,12 @@ const TableRow = props => {
             <td>{ props.items.PRICE }</td>
             <td>{ props.items.QUANTITY }</td>
             <td>{ props.items.SKU }</td>
+            <button onClick={() => props.onEditEntry(props.items)}>SAVE</button>
+            <button>EDIT</button>
+
         </tr>
+        
+            
         
     );
 }

@@ -26,6 +26,8 @@ console.log("nav is here");
         </div>
 
         <div className="content">
+
+            
         <Routes>
 
         
