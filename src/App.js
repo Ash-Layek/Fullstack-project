@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 
 import axios from 'axios';
 
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+
+
 import Table from './tableComponents/Table/Table';
 
 import Nav from './Navbar/Nav';
@@ -41,10 +44,17 @@ useEffect(() => {
 
 }, []);
 
+
+
+
   return (
     <div className="App">
+
+      <Nav entries={items}/>
+    
+
+
       
-      <Home entries={items}/>
 
     </div>
   );

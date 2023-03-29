@@ -7,7 +7,7 @@ import Categories from "../Categories"
 
 import "./Nav.css";
 
-const Nav = () => {
+const Nav = (props) => {
 
 
 console.log("nav is here");
@@ -17,7 +17,7 @@ console.log("nav is here");
 <div className="navv">
         <ul>
 
-<li><NavLink to="/"> Items List</NavLink></li>
+<li><NavLink to="/items"> Items List</NavLink></li>
 <li><NavLink to="/categories" > Category List</NavLink></li>
 
 
@@ -29,7 +29,7 @@ console.log("nav is here");
         <Routes>
 
         
-        <Route  exact path="/" element={<Home />}/>
+        <Route   path="/items" element={<Home entries={props.entries}/>}/>
         <Route  path="categories" element={<Categories />}/>
         
         </Routes>

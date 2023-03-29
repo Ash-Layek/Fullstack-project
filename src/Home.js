@@ -11,7 +11,7 @@ return (
 
 <div className="content-nav"> 
 
-<Nav />
+
 <Table entries={props.entries}/>
 
 </div>
