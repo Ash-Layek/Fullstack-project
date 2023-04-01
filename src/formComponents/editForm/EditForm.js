@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import './EditForm.css';
 import Button from "../Button/Button";
 
+import axios from "axios";
+
 const EditForm = props => {
     const [id, setID] = useState('');
     const [title, setTitle] = useState('');
@@ -10,6 +12,7 @@ const EditForm = props => {
     const [price, setPrice] = useState('')
     const [quantity, setQuantity] = useState('')
     const [sku, setSku] = useState('')
+    const [entry, setEntry] = useState('');
   
     useEffect(()=>{
         setID(props.entry.ID);
@@ -23,10 +26,31 @@ const EditForm = props => {
             
     }, [props]);
 
-    const _detectValue1TextChanged = (key, value) => {
+    const _detectTitleChanged = (key, value) => {
         setTitle(value);
-        console.log("_detectValue1TextChanged event fired");
+        console.log("title event fired");
     }
+    const _detectCategoryIDChanged = (key, value) => {
+      setCategoryID(value);
+      console.log("category event fired");
+  }
+  const _detectDescriptionChanged = (key, value) => {
+    setDescription(value);
+    console.log("Description event fired");
+}
+const _detectPriceChanged = (key, value) => {
+  setPrice(value);
+  console.log("price  event fired");
+}
+const _detectQuantityChanged = (key, value) => {
+  setQuantity(value);
+  console.log("Quantity event fired");
+}
+const _detectSkuChanged = (key, value) => {
+  setSku(value);
+  console.log("Sku event fired");
+}
+
  
 
     useEffect( () => {
@@ -35,10 +59,36 @@ const EditForm = props => {
     }, [id, title]);
 
     const _edit = () => {
-        console.log("EditForm _edit triggered");
-       // props.onEditEntry(entry);
-        _clear();
+    
+
+      console.log(entry)
+
+
+      let url = `http://127.0.0.1:3001/items/${entry.id}`; 
+
+
+    axios.patch(url, {
+            entry: entry
+         })
+         .then( res => {
+           console.log(res.data.items);
+            
+         })
+         .catch(error => {
+            
+            console.log(error.response);
+
+         });
+
+    //update entries with response
+
     }
+
+    useEffect( () => {
+      setEntry({ 'id' :id,  'title':title, 'categoryID':categoryID, 'description':description, 'price': price, 'quantity': quantity, 'sku':sku});
+      console.log("setEntry Changed");
+
+  }, [ id ,title, categoryID, description, price , quantity, sku]);
 
     const _clear = () => {
         
@@ -52,32 +102,33 @@ const EditForm = props => {
             <br />
             <label>Title:</label>
             <input type="text" placeholder="Value 1" value={ title } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+              onChange={ e => _detectTitleChanged('title', e.target.value) } />
             <br />
 
             <label>Category ID:</label>
             <input type="text" placeholder="Value 1" value={ categoryID } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+              onChange={ e => _detectCategoryIDChanged('categoryID', e.target.value) } />
             <br />
 
             <label>Description:</label>
             <input type="text" placeholder="Value 1" value={ description } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+              onChange={ e => _detectDescriptionChanged('description', e.target.value) } />
             <br />
 
             <label>Price:</label>
-            <input type="text" placeholder="Value 1" value={ quantity } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+            <input type="text" placeholder="Value 1" value={ price } 
+              onChange={ e => _detectPriceChanged('price', e.target.value) } />
             <br />
 
             <label>Quantity:</label>
-            <input type="text" placeholder="Value 1" value={ price } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+            <input type="text" placeholder="Value 1" value={ quantity } 
+              onChange={ e => _detectQuantityChanged('quantity', e.target.value) } />
             <br />
 
             <label>Sku:</label>
             <input type="text" placeholder="Value 1" value={ sku } 
-              onChange={ e => _detectValue1TextChanged('value1', e.target.value) } />
+
+              onChange={ e => _detectSkuChanged('sku', e.target.value) } />
             <br />
           
             </div>

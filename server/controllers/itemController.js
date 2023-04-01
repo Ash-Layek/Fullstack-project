@@ -47,15 +47,18 @@ module.exports = {
 
     update(req, res) {
 
-        db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [[req.params.items.categoryID, req.params.items.title, req.params.items.description, req.params.items.price, req.params.items.quantity, req.params.items.sku]], (err, results ) => {
+        db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [req.body.entry.categoryID, req.body.entry.title, req.body.entry.description, req.body.entry.price, 
+            req.body.entry.quantity, req.body.entry.sku, req.params.entry], (err, results ) => {
 
 
 
             if (err) return res.sendStatus(500);
+            
 
             db.query(`SELECT * FROM items `, (err, results) => {
 
                 if (err) return res.sendStatus(500);
+
                 return res.send({items:results});
             })
 

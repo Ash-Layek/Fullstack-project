@@ -19,6 +19,8 @@ const Home  = (props) => {
 
     const [editing, setEditing] = useState(false);
 
+    
+
 
 
 
@@ -34,13 +36,15 @@ const Home  = (props) => {
     }
 
 
+    
+
 
 
 return (
 
 <div className="content-nav"> 
 
- {editing ? ( <EditForm entry={entrytoEdit} />) : ('')}
+ {editing ? ( <EditForm entry={entrytoEdit}  />) : ('')}
 
 <Table entries={props.entries} onEditEntry={_oneditentry}/>
 

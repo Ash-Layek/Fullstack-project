@@ -47,10 +47,13 @@ useEffect(() => {
 
 
 
+
+
+
   return (
     <div className="App">
 
-      <Nav entries={items}/>
+      <Nav entries={items} />
     
 
 
