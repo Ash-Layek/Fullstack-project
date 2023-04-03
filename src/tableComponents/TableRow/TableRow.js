@@ -14,7 +14,7 @@ const TableRow = props => {
             <td>{ props.items.PRICE }</td>
             <td>{ props.items.QUANTITY }</td>
             <td>{ props.items.SKU }</td>
-            <button >SAVE</button>
+            <button onClick={() => props.onDeleteEntry(props.items)}>DELETE</button>
             <button onClick={() => props.onEditEntry(props.items)}>EDIT</button>
 
         </tr>

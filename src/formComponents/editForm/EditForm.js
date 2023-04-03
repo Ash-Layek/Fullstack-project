@@ -61,10 +61,7 @@ const _detectSkuChanged = (key, value) => {
     const _edit = () => {
     
 
-      console.log(entry)
-
-
-      let url = `http://127.0.0.1:3001/items/${entry.id}`; 
+      let url = `http://127.0.0.1:3001/items/${entry.ID}`; 
 
 
     axios.patch(url, {
@@ -72,6 +69,7 @@ const _detectSkuChanged = (key, value) => {
          })
          .then( res => {
            console.log(res.data.items);
+         //  window.location.reload();
             
          })
          .catch(error => {

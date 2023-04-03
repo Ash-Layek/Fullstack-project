@@ -8,13 +8,11 @@ const Table = props => {
     const _editEntry = entry => {
         console.log("Table _editEntry triggered");
         
-
         props.onEditEntry(entry);
     }
 
     
     const _deleteEntry = entry => {
-        console.log("Table _deleteEntry triggered");
         props.onDeleteEntry(entry);
     }
 

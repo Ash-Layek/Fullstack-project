@@ -9,10 +9,10 @@ module.exports = {
 
         db.query(`SELECT * FROM items`, (err, results ) => {
 
-            console.log(results);
+            
             if (err) return res.sendStatus(500);
 
-            console.log(results);
+            
         
             return res.send({items: results})
 
@@ -48,7 +48,7 @@ module.exports = {
     update(req, res) {
 
         db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [req.body.entry.categoryID, req.body.entry.title, req.body.entry.description, req.body.entry.price, 
-            req.body.entry.quantity, req.body.entry.sku, req.params.entry], (err, results ) => {
+            req.body.entry.quantity, req.body.entry.sku, req.body.entry], (err, results ) => {
 
             
             if (err) return res.sendStatus(500);
@@ -72,7 +72,10 @@ module.exports = {
     destroy(req, res) {
 
 
-        db.query(`DELETE FROM items WHERE ID =? `, [req.params.item.ID], (err, results ) => {
+
+        console.log(req.body.entry);
+
+        db.query(`DELETE FROM items WHERE ID =? `, [req.body.entry.ID], (err, results ) => {
 
 
             

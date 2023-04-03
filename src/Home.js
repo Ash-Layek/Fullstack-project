@@ -10,6 +10,8 @@ import AddButton from './formComponents/addForm/AddButton';
 
 import AddForm from './formComponents/addForm/AddForm';
 
+import axios from "axios";
+
 
 
 
@@ -52,6 +54,23 @@ const Home  = (props) => {
     }
 
 
+    const _onDeleteEntry = (entry) => {
+        let url = `http://127.0.0.1:3001/items/item`;
+        axios.delete(url, {
+            data: {
+              entry: entry
+            }
+          })
+          .then(res => {
+            console.log(res.data.items);
+            window.location.reload();
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      }
+
+
     
 
 
@@ -66,7 +85,7 @@ return (
  {adding ? (<AddForm />) : ('')}
 
 
-<Table entries={props.entries} onEditEntry={_oneditentry}/>
+<Table entries={props.entries} onEditEntry={_oneditentry} onDeleteEntry={_onDeleteEntry} />
 
 </div>
 
