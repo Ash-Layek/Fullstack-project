@@ -24,7 +24,7 @@ module.exports = {
 
     store(req, res) {
 
-        db.query(`INSERT INTO items (CATEGORY_ID, TITLE, DESCRIPTION, PRICE , QUANTITY, SKU) VALUES (?, ?, ?, ?, ?, ?) `, [req.params.items.categoryID, req.params.items.title, req.params.items.description, req.params.items.price, req.params.items.quantity, req.params.items.sku], (err, results ) => {
+        db.query(`INSERT INTO items (CATEGORY_ID, TITLE, DESCRIPTION, PRICE , QUANTITY, SKU) VALUES (?, ?, ?, ?, ?, ?) `, [req.body.entry.categoryID, req.body.entry.title, req.body.entry.description, req.body.entry.price, req.body.entry.quantity, req.body.entry.sku], (err, results ) => {
 
             console.log("result :", + JSON.stringify(results));
             if (err) return res.sendStatus(500);
@@ -50,8 +50,7 @@ module.exports = {
         db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [req.body.entry.categoryID, req.body.entry.title, req.body.entry.description, req.body.entry.price, 
             req.body.entry.quantity, req.body.entry.sku, req.params.entry], (err, results ) => {
 
-
-
+            
             if (err) return res.sendStatus(500);
             
 

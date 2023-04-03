@@ -6,6 +6,10 @@ import Nav from './Navbar/Nav';
 
 import EditForm from './formComponents/editForm/EditForm';
 
+import AddButton from './formComponents/addForm/AddButton';
+
+import AddForm from './formComponents/addForm/AddForm';
+
 
 
 
@@ -19,9 +23,21 @@ const Home  = (props) => {
 
     const [editing, setEditing] = useState(false);
 
-    
+    const [adding, setAdding] = useState(false);
 
 
+
+
+    const _adding = (entry) => {
+
+
+
+        setAdding(true);
+
+        console.log("adding triggerred");
+
+
+    }
 
 
 
@@ -44,7 +60,11 @@ return (
 
 <div className="content-nav"> 
 
- {editing ? ( <EditForm entry={entrytoEdit}  />) : ('')}
+ {editing ? ( <EditForm entry={entrytoEdit}  />) : (<AddButton  add={_adding}/>)}
+
+
+ {adding ? (<AddForm />) : ('')}
+
 
 <Table entries={props.entries} onEditEntry={_oneditentry}/>
 
