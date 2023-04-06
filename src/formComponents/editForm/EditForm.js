@@ -53,30 +53,25 @@ const _detectSkuChanged = (key, value) => {
 
  
 
-    useEffect( () => {
-        
-        console.log("setEntry Changed");
-    }, [id, title]);
+ 
 
     const _edit = () => {
     
 
-      let url = `http://127.0.0.1:3001/items/${entry.ID}`; 
+      let url = `http://127.0.0.1:3001/items/${id}`;
 
-
-    axios.patch(url, {
-            entry: entry
-         })
-         .then( res => {
-           console.log(res.data.items);
-         //  window.location.reload();
-            
-         })
-         .catch(error => {
-            
+        axios.patch(url, {
+            data: {
+              entry: entry
+            }
+          })
+          .then(res => {
+            console.log(res.data.items);
+            window.location.reload();
+          })
+          .catch(error => {
             console.log(error.response);
-
-         });
+          });
 
     //update entries with response
 

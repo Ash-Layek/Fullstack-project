@@ -47,8 +47,11 @@ module.exports = {
 
     update(req, res) {
 
-        db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [req.body.entry.categoryID, req.body.entry.title, req.body.entry.description, req.body.entry.price, 
-            req.body.entry.quantity, req.body.entry.sku, req.body.entry], (err, results ) => {
+
+        
+
+        db.query(`UPDATE items SET CATEGORY_ID=?, TITLE=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, SKU=? WHERE ID=?`, [req.body.data.entry.categoryID, req.body.data.entry.title, req.body.data.entry.description, req.body.data.entry.price, 
+            req.body.data.entry.quantity, req.body.data.entry.sku], (err, results ) => {
 
             
             if (err) return res.sendStatus(500);
@@ -73,7 +76,7 @@ module.exports = {
 
 
 
-        console.log(req.body.entry);
+        
 
         db.query(`DELETE FROM items WHERE ID =? `, [req.body.entry.ID], (err, results ) => {
 

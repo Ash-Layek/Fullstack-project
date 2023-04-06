@@ -16,6 +16,7 @@ import './App.css';
 const App  = (props) =>   {
 
 const [items, setItems] = useState([]);
+const [category, setCategories] = useState([]);
 
 
 
@@ -30,7 +31,7 @@ useEffect(() => {
 
     
 
-    setItems(res.data)
+    setItems(res.data);
 
 
   }).catch(err => {
@@ -42,18 +43,38 @@ useEffect(() => {
   })
 
 
+
+
+  let categoryurl = "http://127.0.0.1:3001/categories";
+
+ 
+  axios.get(categoryurl).then(res=> {
+
+
+  console.log(res.data);
+
+  setCategories(res.data);
+
+  }).catch(err => {
+
+    console.log(err);
+    
+    console.log("hahowaa");
+
+  })
+
+
+  
+
+
 }, []);
-
-
-
-
-
 
 
   return (
     <div className="App">
 
-      <Nav entries={items} />
+      <Nav entries={items} categoryEntries={category} />
+      
     
 
 

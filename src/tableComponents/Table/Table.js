@@ -17,7 +17,7 @@ const Table = props => {
     }
 
 
- 
+  
 
     return(
         <div className="Table">
