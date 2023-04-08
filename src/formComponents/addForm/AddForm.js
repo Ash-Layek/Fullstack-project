@@ -13,8 +13,15 @@ const AddForm = props => {
     const [quantity, setQuantity] = useState('')
     const [sku, setSku] = useState('')
     const [entry, setEntry] = useState('');
+    const [selectedCategoryID, setSelectedCategoryID] = useState('');
   
  
+
+    const categoryOptions = props.categoryID.items.map((item, index) => (
+      <option key={index} value={item.ID}>{item.ID}</option>
+    ));
+  
+
 
     const _detectTitleChanged = (key, value) => {
         setTitle(value);
@@ -67,10 +74,10 @@ const storeItem = () =>  {
     
 
     useEffect( () => {
-      setEntry({ 'id' :id,  'title':title, 'categoryID':categoryID, 'description':description, 'price': price, 'quantity': quantity, 'sku':sku});
+      setEntry({ 'id' :id,  'title':title, 'categoryID':selectedCategoryID, 'description':description, 'price': price, 'quantity': quantity, 'sku':sku});
       console.log("setEntry Changed");
 
-  }, [ id ,title, categoryID, description, price , quantity, sku]);
+  }, [ id ,title, selectedCategoryID, description, price , quantity, sku]);
 
     const _clear = () => {
         
@@ -80,16 +87,18 @@ const storeItem = () =>  {
 
     return(
         <div className="Form" style={ {marginTop:'16px'} }>
-            <Button  title="ADD ITEM"  onclick={storeItem}/>
+            <Button  title="SAVE ITEM"  onclick={storeItem}/>
             <br />
             <label>Title:</label>
             <input type="text" placeholder="Value 1" value={ title } 
               onChange={ e => _detectTitleChanged('title', e.target.value) } />
             <br />
 
-            <label>Category ID:</label>
-            <input type="text" placeholder="Value 1" value={ categoryID } 
-              onChange={ e => _detectCategoryIDChanged('categoryID', e.target.value) } />
+            <label htmlFor="categoryID">Category ID:</label>
+      <select id="categoryID" value={selectedCategoryID} onChange={(event) => setSelectedCategoryID(event.target.value)}>
+        <option value="">Select a category...</option>
+        {categoryOptions}
+      </select>
             <br />
 
             <label>Description:</label>

@@ -82,7 +82,7 @@ return (
  {editing ? ( <EditForm entry={entrytoEdit}  />) : (<AddButton  add={_adding}/>)}
 
 
- {adding ? (<AddForm />) : ('')}
+ {adding ? (<AddForm categoryID={props.categoryID}/>) : ('')}
 
 
 <Table entries={props.entries} onEditEntry={_oneditentry} onDeleteEntry={_onDeleteEntry} />

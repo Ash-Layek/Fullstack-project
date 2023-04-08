@@ -18,6 +18,8 @@ const App  = (props) =>   {
 const [items, setItems] = useState([]);
 const [category, setCategories] = useState([]);
 
+const [categoryID, setCategoryID] = useState([]);
+
 
 
 useEffect(() => {
@@ -63,6 +65,29 @@ useEffect(() => {
 
   })
 
+  
+
+
+  let categoryIDURL = "http://127.0.0.1:3001/categories/getID";
+
+ 
+  axios.get(categoryIDURL).then(res=> {
+
+
+  console.log(res.data);
+
+  setCategoryID(res.data);
+
+
+
+  }).catch(err => {
+
+    console.log(err);
+    
+    console.log("hahowaa");
+
+  })
+
 
   
 
@@ -73,7 +98,7 @@ useEffect(() => {
   return (
     <div className="App">
 
-      <Nav entries={items} categoryEntries={category} />
+      <Nav entries={items} categoryEntries={category} categoryID={categoryID} />
       
     
 

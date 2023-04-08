@@ -5,6 +5,27 @@ const db = require('../connection');
 module.exports = {
 
 
+    getID(req,res){
+
+
+
+        db.query(`SELECT ID FROM categories`, (err, results) => {
+
+
+            if (err) res.sendStatus(500);
+
+
+
+            console.log(results);
+
+            return res.send({items: results});
+        })
+
+
+
+    },
+
+
 index(req, res) {
 
 
